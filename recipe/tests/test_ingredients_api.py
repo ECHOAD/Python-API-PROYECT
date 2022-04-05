@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 from rest_framework.test import APIClient
 from rest_framework import status
 
@@ -7,7 +8,7 @@ from core.models import Ingredient
 
 from recipe.serializers import IngredientSerializer
 
-INGREDIENTS_URL = '/api/ingredients/'
+INGREDIENTS_URL = reverse('recipe:ingredient-list')
 
 
 def sample_user():
@@ -76,3 +77,10 @@ class PrivateIngredientsApiTests(TestCase):
         exists = Ingredient.objects.filter(user=self.user).exists()
 
         self.assertTrue(exists)
+
+    def test_create_ingredient_invalid(self):
+        """Test creating invalid ingredient fails"""
+        payload = {'name': ''}
+        res = self.client.post(INGREDIENTS_URL, payload)
+
+        self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
