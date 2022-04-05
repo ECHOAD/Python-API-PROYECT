@@ -1,4 +1,4 @@
-from user.serializer import UserSerializer, AuthTokenSerializer
+from user.serializers import UserSerializer, AuthTokenSerializer
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework import generics, authentication, permissions
 
