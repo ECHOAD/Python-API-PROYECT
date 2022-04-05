@@ -2,13 +2,13 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from recipe import views
 
-route = DefaultRouter()
-route.register('tags', views.TagViewSet)
-route.register('ingredients', views.IngredientViewSet)
+router = DefaultRouter()
+router.register('tags', views.TagViewSet)
+router.register('ingredients', views.IngredientViewSet)
 
 app_name = 'recipe'
 
 urlpatterns = [
-    path('', include(route.urls)),
+    path('', include(router.urls)),
 
 ]

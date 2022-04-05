@@ -1,4 +1,3 @@
-from abc import ABC
 
 from django.contrib.auth import get_user_model, authenticate
 from django.utils.translation import gettext as _
@@ -42,6 +41,13 @@ class UserSerializer(serializers.ModelSerializer):
 
 class AuthTokenSerializer(serializers.Serializer):
     """Serializer for the user authentication object"""
+
+    def update(self, instance, validated_data):
+        pass
+
+    def create(self, validated_data):
+        pass
+
     email = serializers.CharField()
     password = serializers.CharField(
         style={'input_type': 'password'},
